@@ -107,7 +107,6 @@ img.logo_une {
     display: block;
     break-inside: avoid;
     margin-bottom: 20px;
-    border-radius: 8px;
     cursor: pointer;
 }
 
