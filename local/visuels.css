@@ -4,7 +4,6 @@ img.logo_une {
     width: 300px;
     max-width: 100%;
     height: auto;
-    margin-right: 20px;
 }
 
 /* ===== Sidebar ===== */
@@ -200,7 +199,7 @@ img.logo_une {
 
 /* Smartphone large */
 @media (max-width: 768px) {
-     .content {
+    .content {
         margin-bottom: 50px;
     }
     .grid {
@@ -322,5 +321,4 @@ img.logo_une {
         padding: 1rem;
     }
 }
-
 

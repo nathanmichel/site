@@ -109,7 +109,6 @@ a:hover {
 }
 
 /* ===== Menu top ===== */
-/* ===== Menu top ===== */
 .menu_top {
     max-width: 70ch;
     margin: 0 auto;
@@ -131,7 +130,7 @@ a:hover {
     padding: 0 10px;
     font-weight: 800;
     transition: background 0.2s ease-in-out, color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    position: relative; /* Important pour dropdown */
+    position: relative;
 }
 
 .menu_top ul li a {
@@ -164,7 +163,7 @@ a:hover {
 .menu_top ul li .submenu {
     display: none;
     position: absolute;
-    top: 100%; /* juste en dessous du parent */
+    top: 100%;
     left: 0;
     list-style: none;
     padding: 0;
@@ -184,6 +183,7 @@ a:hover {
 .menu_top ul li .submenu li a {
     padding: 8px 10px;
     font-size: clamp(1rem, 1.7vw, 1rem);
+    white-space: nowrap;
 }
 
 .menu_top ul li .submenu li:hover {
@@ -197,6 +197,177 @@ a:hover {
 /* Affiche le dropdown au survol */
 .menu_top ul li.dropdown:hover .submenu {
     display: flex;
+}
+
+/* ====== Menu burger ====== */
+.menu-sm {
+    display: none;
+}
+
+.menu-sm input {
+    display: none;
+}
+
+.open {
+    background-color: #F52639;
+    width: 24px;
+    height: 4px;
+    display: block;
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
+    top: 8px;
+}
+
+.open:before {
+    content: "";
+    background-color: #F52639;
+    width: 24px;
+    height: 4px;
+    display: block;
+    border-radius: 2px;
+    position: relative;
+    top: -8px;
+    transform: rotate(0deg);
+    transition: all 0.3s ease;
+}
+
+.open:after {
+    content: "";
+    background-color: #F52639;
+    width: 24px;
+    height: 4px;
+    display: block;
+    border-radius: 2px;
+    position: relative;
+    top: 4px;
+    transform: rotate(0deg);
+    transition: all 0.3s ease;
+}
+
+.menuOpen {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    float: right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 200;
+}
+
+.menuOpen:hover .open:before {
+    top: -9px;
+}
+
+.menuOpen:hover .open:after {
+    top: 5px;
+}
+
+.menu {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: rgba(242, 226, 91, 0.9);
+}
+
+.menu label {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    background-size: 100%;
+    cursor: pointer;
+}
+
+.menu .menuContent {
+    position: relative;
+    top: 50%;
+    font-size: 54px;
+    text-align: center;
+    padding-bottom: 20px;
+    margin-top: -170px;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.menu ul li {
+    margin-bottom: 1em;
+}
+
+.menu ul li a {
+    display: block;
+    color: #0d0d0d;
+    text-decoration: none;
+    transition: color 0.2s;
+    text-transform: uppercase;
+    padding: 10px 0;
+}
+
+.menu ul li a {
+    color: #fff;
+}
+
+.menu ul li {
+    background: #0d0d0d;
+}
+
+.menuEffects {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+
+.menuEffects ul {
+    transform: translateY(0%);
+    transition: all 0.5s;
+}
+
+#menuToggle:checked ~ .menuEffects {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s;
+}
+
+#menuToggle:checked ~ .menuEffects ul {
+    opacity: 1;
+}
+
+#menuToggle:checked ~ .menuOpen .open {
+    background-color: transparent;
+    position: relative;
+}
+
+#menuToggle:checked ~ .menuOpen .open:before,
+#menuToggle:checked ~ .menuOpen .open:after {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 24px;
+    height: 4px;
+    background-color: #0d0d0d;
+    border-radius: 2px;
+    transform-origin: center;
+}
+
+#menuToggle:checked ~ .menuOpen .open:before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+#menuToggle:checked ~ .menuOpen .open:after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+#menuToggle:not(:checked) ~ .menuEffects ul {
+    transform: translateY(-30%);
 }
 
 br.clearboth {
@@ -380,7 +551,6 @@ img.logo_une {
     width: 300px;
     max-width: 100%;
     height: auto;
-    margin-right: 20px;
 }
 
 /* ===== Avertissement ===== */
@@ -577,6 +747,17 @@ iframe.carte {
     h1 {
         font-size: clamp(1.9rem, 5vw, 4rem);
     }
+
+    /* ====== Menu burger ====== */
+    .menu_top {
+        display: none;
+    }
+    .menu-sm {
+        display: block !important;
+        position: fixed;
+        top: 0;
+        right: 10px;
+    }
 }
 
 /* Smartphone standard */
@@ -659,6 +840,7 @@ iframe.carte {
         margin: 0 auto;
         gap: 2rem;
         align-items: flex-start;
+        box-sizing: unset;
     }
 
     .sidebar {
@@ -779,3 +961,4 @@ iframe.carte {
         order: 2;
     }
 }
+
